@@ -13,7 +13,20 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="order-2 lg:order-1 flex justify-center lg:justify-start"
           >
-            <div className="relative">
+            {/* --- THE FIX: CSS MASK --- 
+               Instead of painting a white box on top (which looks ugly),
+               we use a "Mask" to make the image itself transparent at the bottom.
+               1. No "boxy sides" (because it only affects the image pixels).
+               2. 'black 80%' means the image is fully visible for the top 80%.
+               3. It only fades in the last 20% (the bottom edge).
+            */}
+            <div 
+              className="relative"
+              style={{
+                maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+              }}
+            >
               {/* Background Blur Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 rounded-[3rem] blur-3xl transform scale-110" />
               
@@ -22,10 +35,6 @@ const HeroSection = () => {
                 alt="Fahad Ali - CEO & Founder"
                 className="relative z-10 w-full max-w-md lg:max-w-lg h-auto object-contain"
               />
-
-              {/* --- THE FIX: Refined & Smooth Gradient Fade --- */}
-              {/* We doubled the height and added more steps for a softer transition */}
-              <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white from-10% via-white/60 via-50% to-transparent z-20" />
             </div>
           </motion.div>
 
@@ -65,7 +74,6 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              {/* Scroll Link */}
               <a
                 href="#contact"
                 className="btn-primary flex items-center justify-center"
