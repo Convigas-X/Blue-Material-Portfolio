@@ -23,9 +23,9 @@ const HeroSection = () => {
                 className="relative z-10 w-full max-w-md lg:max-w-lg h-auto object-contain"
               />
 
-              {/* --- THE FIX: Gradient Fade --- */}
-              {/* This overlay fades the bottom of the image into white */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-20" />
+              {/* --- THE FIX: Refined & Smooth Gradient Fade --- */}
+              {/* We doubled the height and added more steps for a softer transition */}
+              <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white from-10% via-white/60 via-50% to-transparent z-20" />
             </div>
           </motion.div>
 
