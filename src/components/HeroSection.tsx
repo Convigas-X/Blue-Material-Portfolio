@@ -15,22 +15,24 @@ const HeroSection = () => {
           >
             <div className="relative">
               {/* 1. BACKGROUND GLOW 
-                 We moved this OUTSIDE the mask so its sides don't get cut off.
-                 It will now be soft and flowy again.
+                 Positioned absolutely behind the image. 
+                 Since it is NOT inside the masked element, it will not be "boxy".
               */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 rounded-[3rem] blur-3xl transform scale-110" />
               
-              {/* 2. THE IMAGE with CSS MASK 
-                 We applied the mask DIRECTLY to the <img> tag.
-                 Now only the legs will fade, but the blue glow behind remains perfect.
+              {/* 2. THE IMAGE with SUBTLE MASK 
+                 - maskImage applied ONLY to the img tag.
+                 - Adjusted to 'black 95%'. 
+                 - This means the image is fully visible for 95% of its height.
+                 - It only fades out in the bottom 5% (very small, very subtle).
               */}
               <img
                 src={fahadPortrait}
                 alt="Fahad Ali - CEO & Founder"
                 className="relative z-10 w-full max-w-md lg:max-w-lg h-auto object-contain"
                 style={{
-                  maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+                  maskImage: 'linear-gradient(to bottom, black 95%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 95%, transparent 100%)'
                 }}
               />
             </div>
