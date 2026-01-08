@@ -13,27 +13,25 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="order-2 lg:order-1 flex justify-center lg:justify-start"
           >
-            {/* --- THE FIX: CSS MASK --- 
-               Instead of painting a white box on top (which looks ugly),
-               we use a "Mask" to make the image itself transparent at the bottom.
-               1. No "boxy sides" (because it only affects the image pixels).
-               2. 'black 80%' means the image is fully visible for the top 80%.
-               3. It only fades in the last 20% (the bottom edge).
-            */}
-            <div 
-              className="relative"
-              style={{
-                maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
-              }}
-            >
-              {/* Background Blur Effect */}
+            <div className="relative">
+              {/* 1. BACKGROUND GLOW 
+                 We moved this OUTSIDE the mask so its sides don't get cut off.
+                 It will now be soft and flowy again.
+              */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 rounded-[3rem] blur-3xl transform scale-110" />
               
+              {/* 2. THE IMAGE with CSS MASK 
+                 We applied the mask DIRECTLY to the <img> tag.
+                 Now only the legs will fade, but the blue glow behind remains perfect.
+              */}
               <img
                 src={fahadPortrait}
                 alt="Fahad Ali - CEO & Founder"
                 className="relative z-10 w-full max-w-md lg:max-w-lg h-auto object-contain"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+                }}
               />
             </div>
           </motion.div>
